@@ -2,11 +2,9 @@
 exec 2>&-
 
 # Assign variables
-base="/Library/Audio/Plug-Ins"
 VST3="${base}/VST3"
 VST2="${base}/VST"
 AU="${base}/Components"
-PathToBinary="/Contents/MacOS"
 VST3Paths=()
 VST2Paths=()
 AUPaths=()
