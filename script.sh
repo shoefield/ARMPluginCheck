@@ -2,9 +2,9 @@
 exec 2>&-
 
 # Assign variables
-VST3="${base}/VST3"
-VST2="${base}/VST"
-AU="${base}/Components"
+VST3="/Library/Audio/Plug-Ins/VST3"
+VST2="/Library/Audio/Plug-Ins/VST"
+AU="/Library/Audio/Plug-Ins/Components"
 VST3Paths=()
 VST2Paths=()
 AUPaths=()
@@ -19,8 +19,10 @@ for v in "${VST3Paths[@]}"; do
 	u="$(find "${v}" -type f | sort -V)"
 	j=$'\n' read -r -d '' -a q <<< "$u"
 	for y in "${q[@]}"; do
-		file "${y}" | tee -a VST3_Results.log
+		file "${y}" | tee -a VST3_Results.log >> /dev/null
 		printf "\n" | tee -a VST3_Results.log
+		printf "\n" | tee -a VST3_Results.log
+
 	done
 done
 
@@ -33,10 +35,11 @@ for filename in "${filenames2[@]}"; do
 done
 
 for v in "${VST2Paths[@]}"; do
-	d="$(find "${v}" -type f | sort -V)"
+	u="$(find "${v}" -type f | sort -V)"
 	p=$'\n' read -r -d '' -a h <<< "$u"
 	for y in "${h[@]}"; do
-		file "${y}" | tee -a VST2_Results.log
+		file "${y}" |tee -a VST2_Results.log >> /dev/null
+		printf "\n" | tee -a VST2_Results.log
 		printf "\n" | tee -a VST2_Results.log
 	done
 done
@@ -53,7 +56,8 @@ for v in "${AUPaths[@]}"; do
 	u="$(find "${v}" -type f | sort -V)"
 	m=$'\n' read -r -d '' -a q <<< "$u"
 	for y in "${q[@]}"; do
-		file "${y}" | tee -a AU_Results.log
+		file "${y}" | tee -a AU_Results.log >> /dev/null
+		printf "\n" | tee -a AU_Results.log
 		printf "\n" | tee -a AU_Results.log
 	done
 done
